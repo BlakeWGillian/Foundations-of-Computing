@@ -1,6 +1,6 @@
 ## Part A
 
-# Implement the Jarvis' March algorithm to compute the convex hull. Find the leftmost point. Then iterate over the remaining points, selecting the most counterclockwise point relative to the current point until you come back to the starting point.
+ Implement the Jarvis' March algorithm to compute the convex hull. Find the leftmost point. Then iterate over the remaining points, selecting the most counterclockwise point relative to the current point until you come back to the starting point.
 Requirements
 
     Data Structure: Implement a doubly linked list to store the points of the convex hull. Each node should store the x and y coordinates of a point and pointers to the next and previous nodes. 
@@ -11,7 +11,7 @@ Requirements
 
 ## Part B
 
-# Implement the Graham's Scan algorithm to compute the convex hull. Find the bottom-most point, sort the points, and proceed with the scan, pushing and popping points from the stack (which will be your doubly linked list in this case) to ensure you maintain a convex hull throughout.
+ Implement the Graham's Scan algorithm to compute the convex hull. Find the bottom-most point, sort the points, and proceed with the scan, pushing and popping points from the stack (which will be your doubly linked list in this case) to ensure you maintain a convex hull throughout.
 Requirements
 
     Data Structure: Implement a stack with doubly linked lists. Utilize this stack in Graham's Scan algorithm to store the convex hull points. Each node should store the x and y coordinates of a point and pointers to the next and previous nodes. 
@@ -22,7 +22,7 @@ Requirements
 
 ## Part C
 
-# Evaluate both algorithms through experimental analysis by quantifying the total basic operations across various input scales and configurations. Consider creating input sets of at least three distinct sizes, each under three differing distribution conditions: random, points on a circle, and random points contained within a set of points making up a simple hull.
+ Evaluate both algorithms through experimental analysis by quantifying the total basic operations across various input scales and configurations. Consider creating input sets of at least three distinct sizes, each under three differing distribution conditions: random, points on a circle, and random points contained within a set of points making up a simple hull.
 
 You should use the following basic operations for each algorithm:
 
