@@ -39,6 +39,18 @@
    Signed by: Blake Gillian 1455185
    Dated:     2023-08-31
 
+
+   SAMPLE USAGE:
+	b=123456789
+	b*987654321
+	b?
+	c=2
+	c^50
+	c?
+	d=b
+	d/c
+	d?
+
 */
 
 #include <stdio.h>
