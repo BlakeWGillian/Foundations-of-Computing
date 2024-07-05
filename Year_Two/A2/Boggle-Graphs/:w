@@ -1,0 +1,85 @@
+/*
+    Written by Grady Fitzpatrick for 
+    COMP20007 Assignment 2 2024 Semester 1
+    
+     Implementation for module which contains Prefix Trie 
+        data structures and functions.
+*/
+#include "prefixTree.h"
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <error.h>
+#include <string.h>
+
+#define NO_CHILDREN 0
+
+struct prefixTree *newPrefixTree(){
+    /* IMPLEMENT HERE */
+    /* Structure of the prefix tree includes a dummy node. */
+    struct prefixTree *retTree = malloc(sizeof(struct prefixTree));
+    retTree->value = ' '; // Not expected input
+    retTree->noch = NO_CHILDREN;
+
+    return retTree;
+}
+
+// Prints the prefix tree - debugging use.
+void printTree(struct prefixTree *pt){
+    if(pt == NULL){
+        printf("NULL");
+        return;
+    }
+    if(pt->value == '\0') printf("\\0, ");
+    else printf("%c", pt->value);
+    for(int i = 0; i < pt->noch; i++){
+        printTree(pt->children[i]);
+    }
+}
+
+void freeTree(struct prefixTree *pt){
+    for(int i = 0; i < pt->noch; i++){
+        freeTree(pt->children[i]);
+    }
+    free(pt);
+}
+
+struct prefixTree *addWordToTree(struct prefixTree *pt, char *word){
+    /* FILL IN: IMPLEMENT */
+    // For each child, see if the letter matches
+    for(int i = 0; i < pt->noch; i++){
+        if(pt->children[i]->value == word[0]){
+            pt->children[i] = addWordToTree(pt->children[i], word + 1);
+            return pt;
+        }
+    }
+
+    // No matching child.
+    struct prefixTree *new_node = newPrefixTree();
+    new_node->value = word[0];
+    pt->children[pt->noch] = new_node;
+    if(word[0] != '\0'){
+        pt->children[pt->noch] = addWordToTree(pt->children[pt->noch], word + 1);
+    }
+    pt->noch += 1;
+    return pt;
+}
+
+struct prefixTree *mergeTrees(struct prefixTree *pta, struct prefixTree *ptb){
+  // CHANGE THIS TO WORK WITH ONLY SORTED TREES!!!!
+  if(ptb == NULL) return pta;
+  if(pta == NULL) return ptb;
+  int a = pta->noch;
+  int b = ptb->noch;
+  while(a && b){
+    if(pta->children[pta->noch - a]->value == ptb->children[ptb->noch - b]->value){
+      pta->children[pta->noch - a] = mergeTrees(pta->children[pta->noch - a], ptb->children[ptb->noch - b])
+    }
+  }
+  printf(" testing \n");
+  printTree(ptb);
+  for(int j = 0; j < ptb->noch; j++){
+    pta->children[12] = ptb->children[j];
+  } 
+  return pta;
+}
